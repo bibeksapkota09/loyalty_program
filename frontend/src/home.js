@@ -119,7 +119,7 @@ const Home = () => {
       </Alert>
                 </div>) : (
                     <Alert style={{ fontSize: '50px' }} color="primary">
-                        WELCOME TO USER <p>{name}</p>
+                        WELCOME USER <p>{name}</p>
                     </Alert>
                 )}
             {(dashboardClicked && (p["num"] !== '000-000-0000')) ? (
@@ -144,7 +144,12 @@ const Home = () => {
                     <Button
                         style={{ color: "red", backgroundColor: "white" }}
                         onClick={userClicked}
+                    >Rewards</Button>
+                    <Button
+                        style={{ color: "red", backgroundColor: "white" }}
+                        onClick={userClicked}
                     >Get All Users</Button>
+                    
                     <div>
                         {uClick ? (
                             <Table
