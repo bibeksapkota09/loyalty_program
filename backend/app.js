@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require("body-parser")
 const InitiateMongoServer = require("./db.js")
 const User = require("./model.js")
+const Reward = require("./RewardModel.js")
 const auth = require('./auth.js');
 //const { use } = require('../nephacks/NepHacks/AuthApp/routes/user.js')
 const app = express()
@@ -21,7 +22,7 @@ app.get('/', (req, res) => {
 // User Register Route
 app.post('/register', async (req, res) => {
   try {
-    let user = await User.findOne({ Phone: req.body.phone });
+    let user = await User.findOne({ Phone: req.body.Phone });
     if (user) {
       return res.status(400).json({
         msg: "User Already Exists",
@@ -46,6 +47,23 @@ app.post('/register', async (req, res) => {
   }
 
 })
+
+app.post('/reward', async (req, res)=>{
+
+  let reward = new Reward({
+    Reward : req.body.Reward
+  })
+  try{
+    reward.save()
+    res.status(200).send("Reward created sucessfully!")
+
+  }catch(e){
+    res.status(500).send("Internal server error!")
+  }
+})
+
+
+
 //login route
 app.post('/login', async (req, res) => {
   const phone = req.body.Phone;
